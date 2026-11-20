@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="canonical" href="https://wordcount.fun/">
+<title>Word Counter – Count Words, Characters, Sentences & Reading Time</title>
+<meta name="description" content="Free online word counter. Paste or type text to instantly count words, characters, sentences, paragraphs, and reading time. Private: your text never leaves your browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#EEF2F7; --surface:#FFFFFF; --ink:#16213A; --muted:#5B6683; --line:#D5DCE8; --accent:#2446D6; --accent-ink:#FFFFFF; --hl:#FFE27A;
+  --head:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){color-scheme:dark;--bg:#0F1524;--surface:#18203A;--ink:#E8ECF6;--muted:#9AA5C4;--line:#2B3556;--accent:#7C95FF;--accent-ink:#0F1524;--hl:#5C4B0F}
+}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0F1524;--surface:#18203A;--ink:#E8ECF6;--muted:#9AA5C4;--line:#2B3556;--accent:#7C95FF;--accent-ink:#0F1524;--hl:#5C4B0F}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.65}
+main{max-width:920px;margin:0 auto;padding:28px 18px 56px}
+h1{font-family:var(--head);font-size:clamp(2rem,6vw,3.2rem);line-height:1.05;margin:0 0 8px;letter-spacing:-.02em}
+h2{font-family:var(--head);font-size:1.4rem;margin:36px 0 8px;letter-spacing:-.01em}
+.lede{color:var(--muted);margin:0 0 22px;max-width:60ch}
+.tool{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.counts{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+.stat{padding:14px 16px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-family:var(--head);font-size:clamp(1.5rem,5vw,2.4rem);line-height:1;font-variant-numeric:tabular-nums}
+.stat span{font-size:.82rem;color:var(--muted)}
+textarea{display:block;width:100%;min-height:300px;resize:vertical;border:0;padding:18px;background:transparent;color:var(--ink);font:inherit;line-height:1.7}
+textarea:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 14px;border-top:1px solid var(--line)}
+button{font:600 .9rem var(--head);padding:9px 16px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.bar .sp{flex:1}
+.more{display:flex;flex-wrap:wrap;gap:6px 22px;padding:12px 16px;border-top:1px solid var(--line);font-size:.95rem;color:var(--muted)}
+.more strong{color:var(--ink);font-variant-numeric:tabular-nums}
+.limit{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding:12px 16px;border-top:1px solid var(--line);font-size:.95rem;color:var(--muted)}
+.limit select,.limit input{font:inherit;font-size:.9rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+.limit input{width:6.5em}
+.limit select:focus-visible,.limit input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+#lbar{display:none;flex-basis:100%;height:8px;border-radius:99px;background:var(--bg);border:1px solid var(--line);overflow:hidden}
+#lfill{height:100%;width:0;background:var(--accent)}
+#lbar.over #lfill{background:#D13B3B}
+#lm{font-weight:600;color:var(--ink)}
+#lm.over{color:#D13B3B}
+.legal h2{margin-top:28px}
+[hidden]{display:none!important}
+#cb{position:fixed;left:0;right:0;bottom:0;padding:14px 18px calc(14px + env(safe-area-inset-bottom,0px));background:var(--surface);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:.9rem;z-index:20}
+#cb p{margin:0;flex:1 1 260px}
+#cb a{color:var(--accent)}
+.other{margin-top:28px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.other a{color:var(--accent);font-weight:600}
+.kw{padding:12px 16px 16px;border-top:1px solid var(--line)}
+.kw h3{font:700 .95rem var(--head);margin:0 0 8px}
+.kw ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.kw li{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.9rem}
+.kw li em{font-style:normal;color:var(--muted);margin-left:6px}
+.kw p{margin:0;color:var(--muted);font-size:.92rem}
+.ad{margin:22px 0 0;min-height:0}
+article p,article li{max-width:68ch}
+details{border-bottom:1px solid var(--line);padding:10px 0}
+summary{cursor:pointer;font:600 1rem var(--head)}
+details p{margin:8px 0 0}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+footer a{color:inherit;margin-right:14px}
+@media (max-width:560px){
+  .counts{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+}
+</style>
+</head>
+<body>
+<main>
+  <h1>Word Counter</h1>
+  <p class="lede">Type or paste your text to count words, characters, sentences, and reading time as you write. Nothing is uploaded; your text stays in your browser.</p>
+
+  <section class="tool" aria-label="Word counter">
+    <div class="counts" role="status" aria-live="polite">
+      <div class="stat"><b id="w">0</b><span>Words</span></div>
+      <div class="stat"><b id="c">0</b><span>Characters</span></div>
+      <div class="stat"><b id="s">0</b><span>Sentences</span></div>
+      <div class="stat"><b id="p">0</b><span>Paragraphs</span></div>
+    </div>
+    <label for="t" style="position:absolute;left:-9999px">Your text</label>
+    <textarea id="t" placeholder="Start typing or paste your text here…" spellcheck="true"></textarea>
+    <div class="more">
+      <span>Characters without spaces: <strong id="cn">0</strong></span>
+      <span>Reading time: <strong id="rt">0 sec</strong></span>
+      <span>Speaking time: <strong id="st">0 sec</strong></span>
+    </div>
+    <div class="limit">
+      <label for="pre">Character limit</label>
+      <select id="pre">
+        <option value="">None</option>
+        <option value="60">SEO title (60)</option>
+        <option value="155">Meta description (155)</option>
+        <option value="280">X post (280)</option>
+        <option value="2200">Instagram caption (2,200)</option>
+      </select>
+      <label for="lim" style="position:absolute;left:-9999px">Custom limit</label>
+      <input id="lim" type="number" min="1" placeholder="Custom">
+      <span id="lm" role="status"></span>
+      <div id="lbar"><div id="lfill"></div></div>
+    </div>
+    <div class="kw">
+      <h3>Most used words</h3>
+      <div id="kw"><p>Write a few sentences to see your most repeated words.</p></div>
+    </div>
+    <div class="bar">
+      <button class="primary" id="copy" type="button">Copy text</button>
+      <button id="clear" type="button">Clear text</button>
+      <span class="sp"></span>
+    </div>
+  </section>
+
+  <!-- Ad slot: paste your AdSense or Mediavine unit here once approved -->
+  <div class="ad" id="ad-slot"></div>
+
+  <div class="other">More free tools: <a href="https://wordcount.fun/case-converter">Case Converter</a> for UPPERCASE, Title Case, camelCase, and more, and the <a href="https://wordcount.fun/lorem-ipsum">Lorem Ipsum Generator</a> for placeholder text.</div>
+
+  <article>
+    <h2>How to use this word counter</h2>
+    <p>Paste or type into the box above. The word, character, sentence, and paragraph counts update with every keystroke, so you can check a limit while you write. Use Copy text to take your draft with you, or Clear text to start fresh.</p>
+
+    <h2>How the counts work</h2>
+    <ul>
+      <li><strong>Words</strong> are groups of characters separated by spaces or line breaks.</li>
+      <li><strong>Characters</strong> include spaces and punctuation. The count without spaces is shown below the box.</li>
+      <li><strong>Sentences</strong> are counted by ending punctuation: periods, question marks, and exclamation marks.</li>
+      <li><strong>Reading time</strong> assumes about 238 words per minute. <strong>Speaking time</strong> assumes about 150 words per minute.</li>
+    </ul>
+
+    <h2>Common word limits</h2>
+    <ul>
+      <li>Meta description: about 155 characters</li>
+      <li>X (Twitter) post: 280 characters</li>
+      <li>College application essay: usually 250 to 650 words</li>
+      <li>Blog post that ranks well: often 1,000 to 2,000 words</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Is my text saved or uploaded?</summary><p>No. All counting happens in your browser. Your text is never sent to a server. A draft is kept in your browser’s local storage so a refresh doesn’t lose it, and Clear text removes it.</p></details>
+    <details><summary>Does it count hyphenated words as one word?</summary><p>Yes. Words joined by a hyphen, like “well-known,” count as one word, which matches how most word processors count.</p></details>
+    <details><summary>Does it work on a phone?</summary><p>Yes. The page is built for small screens as well as desktops.</p></details>
+  </article>
+
+  <section class="legal" id="privacy">
+    <h2>Privacy policy</h2>
+    <p>Last updated November 19, 2026.</p>
+    <p><strong>Your text stays on your device.</strong> The word counter runs entirely in your browser. We don’t receive, store, or have access to anything you type or paste.</p>
+    <p><strong>Local storage.</strong> To keep your draft after a refresh, the page saves it in your browser’s local storage on your own device. Clear text deletes it, and you can also clear it in your browser settings.</p>
+    <p><strong>Analytics and advertising.</strong> We may use privacy-focused analytics to see page visits, and we may show ads. Ad partners such as Google may use cookies to show ads based on your visits to this and other sites. You can manage ad personalization in your Google Ad Settings or opt out at aboutads.info.</p>
+    <p><strong>Contact.</strong> Questions about privacy: hamda.arif2592@gmail.com.</p>
+  </section>
+  <section class="legal" id="terms">
+    <h2>Terms of use</h2>
+    <p>This tool is provided free and “as is,” with no warranty. Counts are estimates and may differ from other programs, so check any official limits before you submit your work. We aren’t liable for losses from using the tool. We may change or remove it at any time. By using the site you agree to these terms.</p>
+  </section>
+
+  <footer>
+    <a href="#privacy">Privacy</a><a href="#terms">Terms</a><a href="https://wordcount.fun/case-converter">Case Converter</a><a href="https://wordcount.fun/lorem-ipsum">Lorem Ipsum</a>
+    <p>© 2026 Word Counter. Free to use.</p>
+  </footer>
+</main>
+
+<div id="cb" role="dialog" aria-label="Cookie consent" hidden>
+  <p>We use cookies for analytics and ads. You can accept or decline. Your text is never collected. <a href="#privacy">Privacy policy</a></p>
+  <button class="primary" id="cok" type="button">Accept</button>
+  <button id="cno" type="button">Decline</button>
+</div>
+
+<script>
+(function(){
+  var t=document.getElementById('t');
+  var $=function(id){return document.getElementById(id)};
+  var STOP=new Set("the and for are but not you all any can had her was one our out has have this that with from they will would there their what about which when your said each she how its who did get may been were them then than into also just like more some very over only".split(" "));
+  function fmtTime(mins){
+    var s=Math.round(mins*60);
+    if(s<60)return s+" sec";
+    var m=Math.floor(s/60),r=s%60;
+    return m+" min"+(r?" "+r+" sec":"");
+  }
+  function update(){
+    var v=t.value, trimmed=v.trim();
+    var words=trimmed?trimmed.split(/\s+/):[];
+    var wc=words.length;
+    var sentences=trimmed?trimmed.split(/[.!?]+(?:\s|$)/).filter(function(x){return x.trim()}).length:0;
+    var paras=trimmed?trimmed.split(/\n\s*\n/).filter(function(x){return x.trim()}).length:0;
+    $('w').textContent=wc.toLocaleString();
+    $('c').textContent=v.length.toLocaleString();
+    $('cn').textContent=v.replace(/\s/g,'').length.toLocaleString();
+    $('s').textContent=sentences.toLocaleString();
+    $('p').textContent=paras.toLocaleString();
+    $('rt').textContent=fmtTime(wc/238);
+    $('st').textContent=fmtTime(wc/150);
+    var lim=parseInt($('lim').value,10), lb=$('lbar'), lm=$('lm');
+    if(lim>0){
+      var n=v.length, over=n>lim;
+      lb.style.display='block';
+      lb.classList.toggle('over',over);lm.classList.toggle('over',over);
+      $('lfill').style.width=Math.min(100,n/lim*100)+'%';
+      lm.textContent=over?(n-lim).toLocaleString()+' over the limit':(lim-n).toLocaleString()+' characters left';
+    }else{lb.style.display='none';lm.textContent='';lm.classList.remove('over')}
+    var freq={};
+    words.forEach(function(w){
+      w=w.toLowerCase().replace(/^[^a-z0-9]+|[^a-z0-9]+$/g,'');
+      if(w.length>2&&!STOP.has(w))freq[w]=(freq[w]||0)+1;
+    });
+    var top=Object.keys(freq).filter(function(k){return freq[k]>1}).sort(function(a,b){return freq[b]-freq[a]}).slice(0,6);
+    var box=$('kw');
+    if(!top.length){box.innerHTML='<p>Write a few sentences to see your most repeated words.</p>';}
+    else{
+      var ul=document.createElement('ul');
+      top.forEach(function(k){
+        var li=document.createElement('li');
+        li.textContent=k;
+        var em=document.createElement('em');
+        em.textContent=(freq[k]/wc*100).toFixed(1)+'%';
+        li.appendChild(em);ul.appendChild(li);
+      });
+      box.innerHTML='';box.appendChild(ul);
+    }
+    try{localStorage.setItem('wc-draft',v)}catch(e){}
+  }
+  t.addEventListener('input',update);
+  $('pre').addEventListener('change',function(){$('lim').value=this.value;update()});
+  $('lim').addEventListener('input',function(){
+    var p=$('pre');p.value=Array.prototype.some.call(p.options,function(o){return o.value===$('lim').value})?$('lim').value:'';
+    update();
+  });
+  $('clear').addEventListener('click',function(){
+    t.value='';update();t.focus();
+    try{localStorage.removeItem('wc-draft')}catch(e){}
+  });
+  $('copy').addEventListener('click',function(){
+    var b=$('copy');
+    function done(msg){b.textContent=msg;setTimeout(function(){b.textContent='Copy text'},1500)}
+    try{
+      navigator.clipboard.writeText(t.value).then(function(){done('Copied')},function(){t.select();done('Select and copy')});
+    }catch(e){t.select();done('Select and copy')}
+  });
+  try{var d=localStorage.getItem('wc-draft');if(d)t.value=d}catch(e){}
+  var cb=$('cb'),cs=null;
+  try{cs=localStorage.getItem('consent')}catch(e){}
+  if(!cs)cb.hidden=false;
+  function choose(v){
+    try{localStorage.setItem('consent',v)}catch(e){}
+    cb.hidden=true;
+    // If v==='yes', load analytics and ad scripts here.
+  }
+  $('cok').addEventListener('click',function(){choose('yes')});
+  $('cno').addEventListener('click',function(){choose('no')});
+  update();
+})();
+</script>
+</body>
+</html>

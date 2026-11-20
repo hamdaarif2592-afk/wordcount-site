@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lorem Ipsum Generator – Free Placeholder Text by Paragraphs, Sentences or Words</title>
+<meta name="description" content="Free lorem ipsum generator. Create placeholder text by paragraphs, sentences, or words in one click and copy it. Runs in your browser.">
+<link rel="canonical" href="https://wordcount.fun/lorem-ipsum">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#EEF2F7; --surface:#FFFFFF; --ink:#16213A; --muted:#5B6683; --line:#D5DCE8; --accent:#2446D6; --accent-ink:#FFFFFF;
+  --head:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){color-scheme:dark;--bg:#0F1524;--surface:#18203A;--ink:#E8ECF6;--muted:#9AA5C4;--line:#2B3556;--accent:#7C95FF;--accent-ink:#0F1524}
+}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0F1524;--surface:#18203A;--ink:#E8ECF6;--muted:#9AA5C4;--line:#2B3556;--accent:#7C95FF;--accent-ink:#0F1524}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.65}
+main{max-width:920px;margin:0 auto;padding:28px 18px 120px}
+h1{font-family:var(--head);font-size:clamp(2rem,6vw,3.2rem);line-height:1.05;margin:0 0 8px;letter-spacing:-.02em}
+h2{font-family:var(--head);font-size:1.4rem;margin:36px 0 8px;letter-spacing:-.01em}
+.lede{color:var(--muted);margin:0 0 22px;max-width:60ch}
+.tool{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.opts{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);font-size:.95rem}
+.opts select,.opts input[type=number]{font:inherit;font-size:.95rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+.opts input[type=number]{width:5.5em}
+.opts label.chk{display:flex;gap:6px;align-items:center}
+textarea{display:block;width:100%;min-height:280px;resize:vertical;border:0;padding:18px;background:transparent;color:var(--ink);font:inherit;line-height:1.7}
+textarea:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px;border-top:1px solid var(--line)}
+button{font:600 .9rem var(--head);padding:9px 16px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.ad{margin:22px 0 0}
+.other{margin-top:28px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.other a{color:var(--accent);font-weight:600}
+article p,article li{max-width:68ch}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+footer a{color:inherit;margin-right:14px}
+#cb{position:fixed;left:0;right:0;bottom:0;padding:14px 18px calc(14px + env(safe-area-inset-bottom,0px));background:var(--surface);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:.9rem;z-index:20}
+#cb p{margin:0;flex:1 1 260px}
+#cb a{color:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+  <h1>Lorem Ipsum Generator</h1>
+  <p class="lede">Create placeholder text for designs, mockups, and templates. Choose how much you need and copy it. Everything runs in your browser.</p>
+
+  <section class="tool" aria-label="Lorem ipsum generator">
+    <div class="opts">
+      <label for="n">Amount</label>
+      <input id="n" type="number" min="1" max="100" value="3">
+      <label for="u" style="position:absolute;left:-9999px">Unit</label>
+      <select id="u">
+        <option value="p">Paragraphs</option>
+        <option value="s">Sentences</option>
+        <option value="w">Words</option>
+      </select>
+      <label class="chk"><input id="start" type="checkbox" checked> Start with “Lorem ipsum dolor sit amet”</label>
+    </div>
+    <label for="out" style="position:absolute;left:-9999px">Generated text</label>
+    <textarea id="out" readonly></textarea>
+    <div class="bar">
+      <button class="primary" id="gen" type="button">Generate</button>
+      <button id="copy" type="button">Copy text</button>
+    </div>
+  </section>
+
+  <!-- Ad slot: paste your ad unit here once approved -->
+  <div class="ad" id="ad-slot"></div>
+
+  <div class="other">More free tools: <a href="https://wordcount.fun/">Word Counter</a> and <a href="https://wordcount.fun/case-converter">Case Converter</a>.</div>
+
+  <article>
+    <h2>What is lorem ipsum?</h2>
+    <p>Lorem ipsum is filler text that designers and developers use to show how a layout looks before the real words are ready. Because it reads as nonsense, it keeps people focused on the design instead of the message.</p>
+    <h2>How to use this generator</h2>
+    <ul>
+      <li>Pick paragraphs, sentences, or words and enter how many you need.</li>
+      <li>Leave the checkbox on if you want the classic opening line.</li>
+      <li>Click Generate, then Copy text and paste it into your design.</li>
+    </ul>
+    <h2>Frequently asked questions</h2>
+    <p><strong>Is this text real Latin?</strong> It is based on scrambled passages of classical Latin, but the generated text has no meaning.</p>
+    <p><strong>Is anything sent to a server?</strong> No. The text is generated in your browser.</p>
+  </article>
+
+  <footer>
+    <a href="https://wordcount.fun/">Word Counter</a><a href="https://wordcount.fun/case-converter">Case Converter</a>
+    <p>© 2026 Lorem Ipsum Generator. Free to use. See the Word Counter page for our privacy policy and terms.</p>
+  </footer>
+</main>
+
+<div id="cb" role="dialog" aria-label="Cookie consent" hidden>
+  <p>We use cookies for analytics and ads. You can accept or decline. Nothing you generate is collected.</p>
+  <button class="primary" id="cok" type="button">Accept</button>
+  <button id="cno" type="button">Decline</button>
+</div>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var bank="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip ex ea commodo consequat duis aute irure in reprehenderit voluptate velit esse cillum fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt culpa qui officia deserunt mollit anim id est laborum".split(" ");
+  function rnd(n){return Math.floor(Math.random()*n)}
+  function words(n){var a=[];for(var i=0;i<n;i++)a.push(bank[rnd(bank.length)]);return a}
+  function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+  function sentence(){
+    var n=8+rnd(10), w=words(n);
+    if(n>10){var i=4+rnd(n-6);w[i]=w[i]+","}
+    return cap(w.join(" "))+".";
+  }
+  function paragraph(){var n=3+rnd(4),a=[];for(var i=0;i<n;i++)a.push(sentence());return a.join(" ")}
+  function generate(){
+    var n=Math.max(1,Math.min(100,parseInt($('n').value,10)||1)), u=$('u').value, out;
+    if(u==='p'){var a=[];for(var i=0;i<n;i++)a.push(paragraph());out=a.join("\n\n")}
+    else if(u==='s'){var b=[];for(var j=0;j<n;j++)b.push(sentence());out=b.join(" ")}
+    else{out=cap(words(n).join(" "))+"."}
+    if($('start').checked){
+      var lead="Lorem ipsum dolor sit amet";
+      if(u==='w'){var w=out.replace(/\.$/,"").split(" ");var L=lead.toLowerCase().split(" ");out=cap(L.concat(w.slice(L.length)).slice(0,n).join(" "))+"."}
+      else out=lead+", "+out.charAt(0).toLowerCase()+out.slice(1);
+    }
+    $('out').value=out;
+  }
+  $('gen').addEventListener('click',generate);
+  $('copy').addEventListener('click',function(){
+    var b=this;
+    function done(m){b.textContent=m;setTimeout(function(){b.textContent='Copy text'},1500)}
+    try{navigator.clipboard.writeText($('out').value).then(function(){done('Copied')},function(){$('out').select();done('Select and copy')})}
+    catch(e){$('out').select();done('Select and copy')}
+  });
+  generate();
+  var cb=$('cb'),cs=null;
+  try{cs=localStorage.getItem('consent')}catch(e){}
+  if(!cs)cb.hidden=false;
+  function choose(v){
+    try{localStorage.setItem('consent',v)}catch(e){}
+    cb.hidden=true;
+    // If v==='yes', load analytics and ad scripts here.
+  }
+  $('cok').addEventListener('click',function(){choose('yes')});
+  $('cno').addEventListener('click',function(){choose('no')});
+})();
+</script>
+</body>
+</html>
