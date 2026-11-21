@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Character Counter – Check Limits for X, Instagram, LinkedIn & SEO</title>
+<meta name="description" content="Free online character counter. Count characters with and without spaces and check limits for X, Instagram, LinkedIn, YouTube, meta descriptions, and SMS.">
+<link rel="canonical" href="https://wordcount.win/character-counter">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#EEF2F7; --surface:#FFFFFF; --ink:#16213A; --muted:#5B6683; --line:#D5DCE8; --accent:#2446D6; --accent-ink:#FFFFFF;
+  --head:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){color-scheme:dark;--bg:#0F1524;--surface:#18203A;--ink:#E8ECF6;--muted:#9AA5C4;--line:#2B3556;--accent:#7C95FF;--accent-ink:#0F1524}
+}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0F1524;--surface:#18203A;--ink:#E8ECF6;--muted:#9AA5C4;--line:#2B3556;--accent:#7C95FF;--accent-ink:#0F1524}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.65}
+main{max-width:920px;margin:0 auto;padding:28px 18px 120px}
+h1{font-family:var(--head);font-size:clamp(2rem,6vw,3.2rem);line-height:1.05;margin:0 0 8px;letter-spacing:-.02em}
+h2{font-family:var(--head);font-size:1.4rem;margin:36px 0 8px;letter-spacing:-.01em}
+.lede{color:var(--muted);margin:0 0 22px;max-width:60ch}
+.tool{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.opts{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);font-size:.95rem}
+.opts select,.opts input[type=number]{font:inherit;font-size:.95rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+.opts input[type=number]{width:5.5em}
+.opts label.chk{display:flex;gap:6px;align-items:center}
+textarea{display:block;width:100%;min-height:280px;resize:vertical;border:0;padding:18px;background:transparent;color:var(--ink);font:inherit;line-height:1.7}
+textarea:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px;border-top:1px solid var(--line)}
+button{font:600 .9rem var(--head);padding:9px 16px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.ad{margin:22px 0 0}
+.other{margin-top:28px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.other a{color:var(--accent);font-weight:600}
+article p,article li{max-width:68ch}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+footer a{color:inherit;margin-right:14px}
+#cb{position:fixed;left:0;right:0;bottom:0;padding:14px 18px calc(14px + env(safe-area-inset-bottom,0px));background:var(--surface);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:.9rem;z-index:20}
+#cb p{margin:0;flex:1 1 260px}
+#cb a{color:var(--accent)}
+
+.opts input[type=text]{font:inherit;font-size:.95rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+textarea.in{min-height:140px;border-bottom:1px solid var(--line)}
+textarea.outp{min-height:140px}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--line)}
+.stat{padding:12px 14px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-family:var(--head);font-size:clamp(1.3rem,4vw,2rem);line-height:1;font-variant-numeric:tabular-nums}
+.stat span{font-size:.8rem;color:var(--muted)}
+.plat{padding:6px 16px 14px}
+.row{display:grid;grid-template-columns:minmax(120px,1.2fr) 2fr auto;gap:6px 14px;align-items:center;padding:8px 0;border-top:1px solid var(--line);font-size:.95rem}
+.row:first-child{border-top:0}
+.track{height:8px;border-radius:99px;background:var(--bg);border:1px solid var(--line);overflow:hidden}
+.fill{height:100%;width:0;background:var(--accent)}
+.row.over .fill{background:#D13B3B}
+.row.over .cnt{color:#D13B3B;font-weight:600}
+.cnt{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+@media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.stat{border-bottom:1px solid var(--line)}.row{grid-template-columns:1fr auto}.track{grid-column:1/-1;order:3}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Character Counter</h1>
+  <p class="lede">Count characters and see how your text fits popular platform limits. Nothing leaves your browser.</p>
+  <section class="tool" aria-label="Character counter">
+    <div class="stats" role="status" aria-live="polite">
+      <div class="stat"><b id="c">0</b><span>Characters</span></div>
+      <div class="stat"><b id="cn">0</b><span>No spaces</span></div>
+      <div class="stat"><b id="w">0</b><span>Words</span></div>
+      <div class="stat"><b id="l">0</b><span>Lines</span></div>
+      <div class="stat"><b id="b">0</b><span>Bytes (UTF-8)</span></div>
+    </div>
+    <label for="t" style="position:absolute;left:-9999px">Your text</label>
+    <textarea id="t" placeholder="Type or paste your text here…"></textarea>
+    <div class="bar"><button class="primary" id="copy" type="button">Copy text</button><button id="clear" type="button">Clear text</button></div>
+    <div class="plat" id="plat"></div>
+  </section>
+  <!-- Ad slot: paste your ad unit here once approved -->
+  <div class="ad" id="ad-slot"></div>
+
+  <div class="other">More free tools: <a href="https://wordcount.win/">Word Counter</a>, <a href="https://wordcount.win/case-converter">Case Converter</a>, <a href="https://wordcount.win/lorem-ipsum">Lorem Ipsum Generator</a> and <a href="https://wordcount.win/slug-generator">Slug Generator</a>.</div>
+
+  <article>
+    <h2>How this character counter works</h2>
+    <p>Type or paste text and see the character count update as you write. Below the box, each row shows how close you are to a popular platform’s limit, and turns red when you go over it.</p>
+    <h2>Limits shown</h2>
+    <ul>
+      <li>X (Twitter) post: 280 characters</li>
+      <li>Instagram caption: 2,200 characters, and bio: 150</li>
+      <li>LinkedIn post: 3,000 characters</li>
+      <li>YouTube title: 100, and description: 5,000</li>
+      <li>SEO title tag: about 60, and meta description: about 160</li>
+    </ul>
+    <p>Platforms change their limits and count some things differently, such as links, emoji, or accented characters, so treat these numbers as a guide and check the platform before you publish. Search engines also cut titles and descriptions by pixel width, not characters, so the SEO numbers are approximate.</p>
+    <h2>Frequently asked questions</h2>
+    <p><strong>Do spaces count as characters?</strong> Yes, in most platforms. The count without spaces is shown separately.</p>
+    <p><strong>Is my text saved?</strong> No. Nothing leaves your browser, and nothing is stored.</p>
+  </article>
+
+  <footer>
+    <a href="https://wordcount.win/">Word Counter</a><a href="https://wordcount.win/case-converter">Case Converter</a><a href="https://wordcount.win/lorem-ipsum">Lorem Ipsum Generator</a><a href="https://wordcount.win/slug-generator">Slug Generator</a>
+    <p>© 2026 Character Counter. Free to use. See the <a href="https://wordcount.win/">Word Counter</a> page for our privacy policy and terms.</p>
+  </footer>
+</main>
+
+<div id="cb" role="dialog" aria-label="Cookie consent" hidden>
+  <p>We use cookies for analytics and ads. You can accept or decline. Nothing you type is collected.</p>
+  <button class="primary" id="cok" type="button">Accept</button>
+  <button id="cno" type="button">Decline</button>
+</div>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+
+  var LIM=[["X (Twitter) post",280],["Instagram caption",2200],["Instagram bio",150],["LinkedIn post",3000],["Facebook post",63206],["YouTube title",100],["YouTube description",5000],["SEO title tag",60],["Meta description",160],["SMS (single message)",160]];
+  var t=$('t'),plat=$('plat'),rows=[];
+  LIM.forEach(function(x){
+    var r=document.createElement('div');r.className='row';
+    r.innerHTML='<span></span><div class="track"><div class="fill"></div></div><span class="cnt"></span>';
+    r.children[0].textContent=x[0];plat.appendChild(r);rows.push(r);
+  });
+  function update(){
+    var v=t.value, n=Array.from(v).length, tr=v.trim();
+    $('c').textContent=n.toLocaleString();
+    $('cn').textContent=Array.from(v.replace(/\s/g,'')).length.toLocaleString();
+    $('w').textContent=(tr?tr.split(/\s+/).length:0).toLocaleString();
+    $('l').textContent=(v?v.split(/\n/).length:0).toLocaleString();
+    $('b').textContent=new TextEncoder().encode(v).length.toLocaleString();
+    LIM.forEach(function(x,i){
+      var r=rows[i],over=n>x[1];
+      r.classList.toggle('over',over);
+      r.querySelector('.fill').style.width=Math.min(100,n/x[1]*100)+'%';
+      r.querySelector('.cnt').textContent=n.toLocaleString()+' / '+x[1].toLocaleString()+(over?' (over by '+(n-x[1]).toLocaleString()+')':'');
+    });
+  }
+  t.addEventListener('input',update);
+  $('clear').addEventListener('click',function(){t.value='';update();t.focus()});
+  $('copy').addEventListener('click',function(){
+    var b=this;
+    function done(m){b.textContent=m;setTimeout(function(){b.textContent='Copy text'},1500)}
+    try{navigator.clipboard.writeText(t.value).then(function(){done('Copied')},function(){t.select();done('Select and copy')})}
+    catch(e){t.select();done('Select and copy')}
+  });
+  update();
+
+
+  var cb=$('cb'),cs=null;
+  try{cs=localStorage.getItem('consent')}catch(e){}
+  if(!cs)cb.hidden=false;
+  function choose(v){
+    try{localStorage.setItem('consent',v)}catch(e){}
+    cb.hidden=true;
+    // If v==='yes', load analytics and ad scripts here.
+  }
+  $('cok').addEventListener('click',function(){choose('yes')});
+  $('cno').addEventListener('click',function(){choose('no')});
+
+})();
+</script>
+</body>
+</html>
