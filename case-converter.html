@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Case Converter – UPPERCASE, lowercase, Title Case, camelCase & More</title>
-<meta name="description" content="Free online case converter. Change text to uppercase, lowercase, title case, sentence case, camelCase, snake_case, or kebab-case in one click. Runs in your browser.">
+<title>Case Converter – Title Case, UPPERCASE, camelCase & More</title>
+<meta name="description" content="Free case converter. Change text to Title Case, UPPERCASE, lowercase, sentence case, camelCase, PascalCase, snake_case, kebab-case, or CONSTANT_CASE in one click. Private: runs in your browser.">
 <link rel="canonical" href="https://wordcount.win/case-converter">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,6 +50,7 @@ footer a{color:inherit;margin-right:14px}
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5113517491305272"
      crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is title case?", "acceptedAnswer": {"@type": "Answer", "text": "Title case capitalizes the main words in a heading and leaves short words like “a,” “of,” and “the” lowercase, except at the start. Style guides such as AP, APA, and Chicago have slightly different rules, so check your guide for edge cases."}}, {"@type": "Question", "name": "What is the difference between camelCase and PascalCase?", "acceptedAnswer": {"@type": "Answer", "text": "Both join words with no spaces and capitalize each new word. camelCase starts with a lowercase letter, like myVariableName, and PascalCase starts with a capital, like MyVariableName."}}, {"@type": "Question", "name": "When should I use snake_case or kebab-case?", "acceptedAnswer": {"@type": "Answer", "text": "snake_case, with underscores, is common for variable and file names in languages such as Python. kebab-case, with hyphens, is common in URLs, CSS class names, and file names."}}, {"@type": "Question", "name": "Will sentence case fix names and the word “I”?", "acceptedAnswer": {"@type": "Answer", "text": "No. Sentence case lowercases everything except the first letter of each sentence, so names, acronyms, and the word “I” may need a quick manual fix."}}]}</script>
 </head>
 <body>
 <main>
@@ -67,6 +68,8 @@ footer a{color:inherit;margin-right:14px}
       <button data-m="camel" type="button">camelCase</button>
       <button data-m="snake" type="button">snake_case</button>
       <button data-m="kebab" type="button">kebab-case</button>
+      <button data-m="pascal" type="button">PascalCase</button>
+      <button data-m="constant" type="button">CONSTANT_CASE</button>
     </div>
     <div class="bar">
       <button class="primary" id="copy" type="button">Copy text</button>
@@ -80,14 +83,31 @@ footer a{color:inherit;margin-right:14px}
   <div class="other">Need to check length? Try the <a href="https://wordcount.win/">Word Counter</a> for words, characters, and reading time, or the <a href="https://wordcount.win/lorem-ipsum">Lorem Ipsum Generator</a> for placeholder text, plus the <a href="https://wordcount.win/slug-generator">Slug Generator</a> and <a href="https://wordcount.win/character-counter">Character Counter</a>.</div>
 
   <article>
-    <h2>What each case does</h2>
+    <h2>Convert text to any case</h2>
+    <p>Paste your text above, click a case, and the text changes right in the box. You can click another case to convert again, then copy the result. Nothing is uploaded, and everything runs in your browser.</p>
+    <h2>Cases you can convert to</h2>
     <ul>
-      <li><strong>UPPERCASE</strong> and <strong>lowercase</strong> change every letter.</li>
-      <li><strong>Title Case</strong> capitalizes main words and keeps short words like “a,” “of,” and “the” lowercase, except at the start.</li>
-      <li><strong>Sentence case</strong> capitalizes the first letter of each sentence.</li>
-      <li><strong>camelCase</strong>, <strong>snake_case</strong>, and <strong>kebab-case</strong> turn phrases into names for code, files, and URLs.</li>
+      <li><strong>UPPERCASE</strong> makes every letter a capital, handy for labels and short emphasis.</li>
+      <li><strong>lowercase</strong> makes every letter small, useful for cleaning up text copied in all caps.</li>
+      <li><strong>Title Case</strong> capitalizes the main words for headings, and keeps short words like “a,” “of,” and “the” lowercase unless they come first.</li>
+      <li><strong>Sentence case</strong> capitalizes the first letter of each sentence and lowercases the rest.</li>
+      <li><strong>camelCase</strong> joins words with no spaces and starts lowercase, like myVariableName.</li>
+      <li><strong>PascalCase</strong> is the same but starts with a capital, like MyVariableName.</li>
+      <li><strong>snake_case</strong> joins lowercase words with underscores, like my_variable_name.</li>
+      <li><strong>kebab-case</strong> joins lowercase words with hyphens, like my-page-title.</li>
+      <li><strong>CONSTANT_CASE</strong> joins capital letters with underscores, like MAX_RETRY_COUNT.</li>
+    </ul>
+    <h2>Tips for better results</h2>
+    <ul>
+      <li>Review headlines after converting to Title Case. Style guides differ on words like “is,” “from,” and “with.”</li>
+      <li>Sentence case lowercases everything else, so fix names, acronyms, and the word “I” by hand.</li>
+      <li>The code cases (camelCase, snake_case, and the others) drop punctuation and symbols, so only letters and numbers remain.</li>
     </ul>
     <h2>Frequently asked questions</h2>
+    <p><strong>What is title case?</strong> Title case capitalizes the main words in a heading and leaves short words like “a,” “of,” and “the” lowercase, except at the start. Style guides such as AP, APA, and Chicago have slightly different rules, so check your guide for edge cases.</p>
+    <p><strong>What is the difference between camelCase and PascalCase?</strong> Both join words with no spaces and capitalize each new word. camelCase starts with a lowercase letter, like myVariableName, and PascalCase starts with a capital, like MyVariableName.</p>
+    <p><strong>When should I use snake_case or kebab-case?</strong> snake_case, with underscores, is common for variable and file names in languages such as Python. kebab-case, with hyphens, is common in URLs, CSS class names, and file names.</p>
+    <p><strong>Will sentence case fix names and the word “I”?</strong> No. Sentence case lowercases everything except the first letter of each sentence, so names, acronyms, and the word “I” may need a quick manual fix.</p>
     <p><strong>Is my text sent anywhere?</strong> No. Everything runs in your browser.</p>
     <p><strong>Can I undo a conversion?</strong> Press Ctrl+Z (Cmd+Z on Mac) in the box right after converting, or paste your original text again.</p>
   </article>
@@ -126,7 +146,9 @@ footer a{color:inherit;margin-right:14px}
       return words(s.toLowerCase()).map(function(w,i){return i?w.charAt(0).toUpperCase()+w.slice(1):w}).join('');
     },
     snake:function(s){return words(s.toLowerCase()).join('_')},
-    kebab:function(s){return words(s.toLowerCase()).join('-')}
+    kebab:function(s){return words(s.toLowerCase()).join('-')},
+    pascal:function(s){return words(s.toLowerCase()).map(function(w){return w.charAt(0).toUpperCase()+w.slice(1)}).join('')},
+    constant:function(s){return words(s.toLowerCase()).join('_').toUpperCase()}
   };
   Array.prototype.forEach.call(document.querySelectorAll('[data-m]'),function(b){
     b.addEventListener('click',function(){
